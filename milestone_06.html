@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
+	<!-- This page can be used as a template for completing your writeups for milestone and "deep dive" assignments -->
+	<!-- Replace the content placeholders with your own content -->
+	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>Geography 485L/585L Assignment Template</title>
+	</head>
+	<body>
+	<p>
+	Laura Gleasner<br>
+	February 19, 2014
+	</p>
+	<h1>Lab Assignment / Assignment 6</h1>
+	<div>
+	Search for the following search phrase:  “REQUEST=GetCapabilities” and “SERVICE=WMS”
+	<div>
+	
+		<h2>Question 1 - What search engine did you use?</h2>
+	<p>Google</p>
+	<h2>Question 2 - How many ‘hits’ did you get?</h2>
+	<p>249,000</p>
+		<h2>Question 3 - How useful (generally in terms of getting a pointers to live WMS services [defined as a functioning GetCapabilities request]) were the ‘hits’? </h2>
+		
+	<p>This wasn't very useful.  I think you would need to look for more specific information relating to the specific data you were looking for.</p>
+
+
+<h3>Q4.....Pick two of the services that included live "GetCapabilities" requests that you found above, and answer the following questions about each.</h3>
+<h2>Question 4 (service #1)</h2>
+<h3>What is the URL for the full GetCapabilities request to the service?</h3>
+<p>http://neowms.sci.gsfc.nasa.gov/wms/wms?request=GetCapabilities&service=WMS&version=1.1.1</p>
+<h3>What is the Name of the service? </h3>
+<p>NASA Earth Observations (NEO) WMS</p>
+<h3>What Format(s) are available for GetMap requests from the service? </h3>
+<p>image/png and image/jpeg</p>
+<h3>How many layers are included in the service (including nesting layers)?</h3>
+<p>There are three layers</p>
+<h2>Question 4 (service #2)What is the URL for the full GetCapabilities request to the service? </h2>
+<p>http://dss.csiss.gmu.edu/cgi-bin/wms_cdlall?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities</p>
+<h3>What is the Name of the service? </h3>
+<p>Cropland Data Layer WMS Service</p>
+<h3>What Format(s) are available for GetMap requests from the service? </h3>
+<p>image/tiff, image/gif, image/png, image/png; mode=24bit, image/jpeg, image/vnd.wap.wbmp, image/svg+xml</p>
+<h3>How many layers are included in the service (including nesting layers)?</h3>
+<p>17 layers</p>
+
+<h2>Question 5: For one of the layers in the first service,What is the name of the layer? <br>
+<p></p>
+<h3>What is the SRS of the layer? </h3>
+<p>EPSG:4326</p>
+<h3>What is the name of the projection that matches the SRS EPSG code? </h3>
+<p>WGS84</p>
+<h3>What is the LatLonBoundingBox of the layer?</h3>
+<p>LatLonBoundingBox maxy="90.0" maxx="180.0" miny="-90.0" minx="-180.0"</p>
+
+
+<h3>Open the following GetCapabilities request in your browser. Select “View Source” from the browser menu to see the delivered XML document (it may appear as an unformatted string of text by default in your browser - if that is the case, save the file to your hard drive and view it in a text editor). Use the information in the XML capabilities document to formulate GetMap requests for the following map images. Include the requests and resulting images in your write-up. Comment on anything unusual that you notice in the images that are returned.</h3>
+http://gstore.unm.edu/apps/rgis/datasets/92403ebf-aec5-404b-ae8a-6db41f388737/services/ogc/wms?SERVICE=wms&REQUEST=GetCapabilities&VERSION=1.1.1
+<h2>Question 6 for the area surrounding Bernalillo County (-107.2,34.7,-106,35.25) as a 200x200 pixel JPEG for the same area as a 500x500 pixel PNG</h2>
+<h4>http://gstore.unm.edu/apps/rgis/datasets/92403ebf-aec5-404b-ae8a-6db41f388737/services/ogc/wms?SERVICE=wms&REQUEST=GetCapabilities&VERSION=1.1.1VERSION=1.1.1&SERVICE=WMS&REQUEST=GetMap&BBOX=-107.2,34.7,-106,35.25&LAYERS=2007fe_35_county&WIDTH=500&HEIGHT=500&SRS=EPSG:4326&FORMAT=image/PNG&STYLES=</h4>
+
+<h4>http://gstore.unm.edu/apps/rgis/datasets/92403ebf-aec5-404b-ae8a-6db41f388737/services/ogc/wms?SERVICE=wms&REQUEST=GetCapabilities&VERSION=1.1.1VERSION=1.1.1&SERVICE=WMS&REQUEST=GetMap&BBOX=-107.2,34.7,-106,35.25&LAYERS=2007fe_35_county&WIDTH=500&HEIGHT=500&SRS=EPSG:4326&FORMAT=image/JPG&STYLES=</h4>
+<h3>Open the following (linked) KML file in Google Earth, uncompress it, and save the contained KML file on your computer. Open the KML file in a text editor (e.g. Text Wrangler [Mac], Notepad/Notepad++ [Windows]).
+http://rgis.unm.edu/gstore/datasets/3f0a85aa-b7f8-47bd-8db6-1c0e66becf72/nm_state_bdy_00.derived.kml</h3>
+
+<h2>Question 7 : Add a second Placemark element to the KML file that represents a square region that is completely contained within the state boundary. Save the KML file and open it in Google Earth (download from http://www.google.com/earth/index.html) or view it in Google Maps (by adding it to your GitHub gh-pages branch) as demonstrated in the lecture to verify that you have successfully created the file. Submit the KML file (as a link in your writeup) as part of your writeup for the milestone.</h2>
+	</body>
+</html>

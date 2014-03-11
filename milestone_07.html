@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
+	<!-- This page can be used as a template for completing your writeups for milestone and "deep dive" assignments -->
+	<!-- Replace the content placeholders with your own content -->
+	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>Geography 485L/585L Assignment Template</title>
+	</head>
+	<body>
+		<p>
+	Laura Gleasner<br>
+	March 4, 2014
+	</p>
+	<h1>Lab Assignment / Assignment 7</h1>
+	
+	Given that McKinley County NM is contained within the following BBOX: -109.5, 34.5, -106.5, 36.5
+<h2>Question 1  What is the aspect ratio of this geographic region?</h2>
+<h3>The aspect ratio is 1.5</h3>
+<h2>Question 2  What would be the height (in whole pixels) for a map image for this region that is 600 pixels wide?</h2>
+<h3>Height would be 400 pixels</h3>
+<h3>Question 3  Formulate a WMS request that reflects the values determined in 1.1 and 1.2 above for the WMS service used above in the examples. Include in your answer both the actual WMS request and the returned map image.</h3>
+<h4>http://gstore.unm.edu/apps/rgis/datasets/92403ebf-aec5-404b-ae8a-6db41f388737/services/ogc/wms?SERVICE=wms&REQUEST=GetCapabilities&VERSION=1.1.1VERSION=1.1.1&SERVICE=WMS&REQUEST=GetMap&BBOX=-109.5,34.5,-106.5,36.5&LAYERS=2007fe_35_county&WIDTH=600&HEIGHT=400&SRS=EPSG:4326&FORMAT=image/PNG&STYLES=
+</h4>
+<h2>Question 4  Formulate a WMS request for a 900x600 pixel map image that represents the full 3-degree width of the geographic region, and is based upon the minimum Y value of 34.5 degrees North Latitude. Include in your answer both the WMS request and the returned map image.</h2>
+<h4>http://gstore.unm.edu/apps/rgis/datasets/92403ebf-aec5-404b-ae8a-6db41f388737/services/ogc/wms?SERVICE=wms&REQUEST=GetCapabilities&VERSION=1.1.1VERSION=1.1.1&SERVICE=WMS&REQUEST=GetMap&BBOX=-109.5,34.5,-106.5,36&LAYERS=2007fe_35_county&WIDTH=900&HEIGHT=600&SRS=EPSG:4326&FORMAT=image/PNG&STYLES=</h4>
+<h2>Question 5  Given a WMS that is represented by the following GetCapabilities request, formulate individual GetMap requests using the following parameters:
+
+BBOX=-106.639,35.074,-106.609,35.094 WIDTH=600 HEIGHT=400
+
+for each of the following layers: 0 (TNM_Large_Scale_Imagery) and 1 (1_foot_imagery) - yes - USGS just gave numbers as the layer names
+
+Link
+http://raster.nationalmap.gov/ArcGIS/services/TNM_Large_Scale_Imagery/
+MapServer/WMSServer?request=GetCapabilities&service=WMS</h2>
+<h2> Question 6  Which layers return map images that display image content (i.e. return a non-blank image)? </h2>
+
+Sometimes when WMS layers are accessed, there is a limit on the map scales for which the map image will be returned. If a request is submitted for a map scale that is outside the range specified for a given layer, typically, a blank map image will be returned.
+<h3></h3>
+<h2>Questions 7  From examining the information for these layers in the GetCapabilities XML document - which element in each layer’s service metadata do you think provides information about the scales for which the layer will return map images containing data? 
+You can effectively change the scale of a map image by changing the pixel dimensions of the requested image.</h2>
+<h3></h3>
+<h2>Question 8  Which map images contain data for each of the following map image widths (remember to adjust the image height to match the BBOX of the request) 30 pixels 1200 pixels </h2>
+<h3></h3>
+
+	</body>
+</html>
