@@ -7,7 +7,7 @@
 	
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<title>Geography 485L/585L Assignment Template</title>
+		<title>Geography 485L/585L Milestone 7</title>
 	</head>
 	<body>
 		<p>
@@ -31,19 +31,25 @@
 BBOX=-106.639,35.074,-106.609,35.094 WIDTH=600 HEIGHT=400
 
 for each of the following layers: 0 (TNM_Large_Scale_Imagery) and 1 (1_foot_imagery) - yes - USGS just gave numbers as the layer names
+<h3>This request works for layer 0.
 
-Link
+http://raster.nationalmap.gov/ArcGIS/services/TNM_Large_Scale_Imagery/MapServer/WMSServer?VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap&BBOX=-106.639,35.074,-106.609,35.094&LAYERS=0&FORMAT=image/png&TRANSPARENT=FALSE&STYLES=&CRS=CRS:84&WIDTH=600&HEIGHT=400
+</h3>
+
+<p><a href="images/milestone_7_5.png">Link</a></p>
 http://raster.nationalmap.gov/ArcGIS/services/TNM_Large_Scale_Imagery/
 MapServer/WMSServer?request=GetCapabilities&service=WMS</h2>
 <h2> Question 6  Which layers return map images that display image content (i.e. return a non-blank image)? </h2>
 
 Sometimes when WMS layers are accessed, there is a limit on the map scales for which the map image will be returned. If a request is submitted for a map scale that is outside the range specified for a given layer, typically, a blank map image will be returned.
-<h3></h3>
+		<h3>Layer 1 - http://raster.nationalmap.gov/ArcGIS/services/TNM_Large_Scale_Imagery/MapServer/WMSServer?VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap&BBOX=-106.639,35.074,-106.609,35.094&LAYERS=1&FORMAT=image/png&TRANSPARENT=FALSE&STYLES=&CRS=CRS:84&WIDTH=600&HEIGHT=400</h3>
 <h2>Questions 7  From examining the information for these layers in the GetCapabilities XML document - which element in each layer’s service metadata do you think provides information about the scales for which the layer will return map images containing data? 
 You can effectively change the scale of a map image by changing the pixel dimensions of the requested image.</h2>
-<h3></h3>
+<h3>The abstract tells what scales the imagery can be viewed at.  There is also a MaxScaleDenominator under each layer.</h3>
 <h2>Question 8  Which map images contain data for each of the following map image widths (remember to adjust the image height to match the BBOX of the request) 30 pixels 1200 pixels </h2>
-<h3></h3>
-
+<h3>Layers 0 and 1 will return images for 1200/800 pixels- http://raster.nationalmap.gov/ArcGIS/services/TNM_Large_Scale_Imagery/MapServer/WMSServer?VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap&BBOX=-106.639,35.074,-106.609,35.094&LAYERS=1&FORMAT=image/png&TRANSPARENT=FALSE&STYLES=&CRS=CRS:84&WIDTH=1200&HEIGHT=800</h3>
+<p><a href="images/image_1_1200_800.png">Image 1</a></p>
+<p><a href="images/image_0_1200_800.png">Image 1</a></p>
+<h3>Layers 0 and 1 will not return images for 30/20 pixels - http://raster.nationalmap.gov/ArcGIS/services/TNM_Large_Scale_Imagery/MapServer/WMSServer?VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap&BBOX=-106.639,35.074,-106.609,35.094&LAYERS=0&FORMAT=image/png&TRANSPARENT=FALSE&STYLES=&CRS=CRS:84&WIDTH=30&HEIGHT=20
 	</body>
 </html>
