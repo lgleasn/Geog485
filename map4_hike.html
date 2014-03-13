@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            html { height:  100% }
+            body { height:  100%;
+               margin: 0px;
+               padding: 0px;
+               background-color: teal;
+               color:  white;
+               text-align:  center}
+               #map_canvas { width:90%;
+               height:80%;
+               margin-left: auto;
+               margin-right: auto }
+        </style>
+        <script type="text/javascript"
+            src="https://maps.google.com/maps/api/js?sensor=false">
+        </script>
+        <script type="text/javascript">
+            function initialize( ) {
+            var hotel = new google.maps.LatLng(33.4994,-117.6617)
+			var crystalc = new google.maps.LatLng(33.5511,-117.8078)
+			var riptide = new google.maps.LatLng(33.5606,-117.6711)
+			var hike1 = new google.maps.LatLng (33.472890,-117.720741)
+			var hike2 = new google.maps.LatLng (33.463286,-117.715403)
+            var myOptions = {
+            zoom: 10,
+            center: hotel,
+            mapTypeID: google.maps.MapTypeId.HYBRID
+			};
+			var map = new google.maps.Map(document.getElementById("map_canvas"),
+			myOptions);
+			
+			var hotelMarker = new google.maps.Marker({
+			position: hotel,
+			title:"Best Western, 27174 Ortega Highway, San Juan Capistrano, California"
+			});
+			hotelMarker.setMap(map);
+			
+			var crystalcMarker = new google.maps.Marker({
+			position: crystalc,
+			title:"Crystal Cove State Park"
+			});
+			crystalcMarker.setMap(map);
+			
+			var riptideMarker = new google.maps.Marker({
+			position: riptide,
+			title:"Riptide Sushi Restaurant, 27741 Crown Valley Parkway, Mission Viejo, California"
+			});
+			riptideMarker.setMap(map);
+			
+			var hike1Marker = new google.maps.Marker({
+			position: hike1,
+			title:"Begin hike at Ritz Carlton"
+			});
+			hike1Marker.setMap(map);
+			
+			var hike2Marker = new google.maps.Marker({
+			position: hike2,
+			title:"End hike at Ritz Carlton"
+			});
+			hike2Marker.setMap(map);
+			
+			var hikeCoordinates = [
+              hike1,
+              new google.maps.LatLng(33.472890,-117.720741),
+              new google.maps.LatLng(33.463286,-117.715403),
+              hike2
+              ];
+            var hikePath = new google.maps.Polyline({
+              path: hikeCoordinates,
+              strokeColor: "#FF0000",
+              strokeOpacity: 1.0,
+              strokeWeight: 2
+            });
+            hikePath.setMap(map)
+			}
+    </script>
+    </head>
+    <body onload="initialize()">
+        <h1>Things to do on Vacation</h1>
+        <div id="map_canvas"></div>
+    </body>
+</html>
