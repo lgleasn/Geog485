@@ -36,14 +36,16 @@
 		<h2>Question 2 What combination of OGC Service and Request (e.g. SERVICE=WMS&REQUEST=GetFeatureInfo)
 			would you use to perform the following? (3 pts each)</h2>
 		<h3>1. Determine the spatial extent of an available layer from a Web Map Service.</h3>
-		<p>answer</p>
+		<p>service=WMS&GetSRS</p>
 			<h3>2. Obtain a list of coverages from a Web Coverage service.</h3>
-		<p>answer</p>
+		<p>service=WCS&request=DescribeCoverage</p>
 			<h3>3. Determine what file formats are supported by a Web Feature Service for the delivery of available data
 			types (i.e. layers)</h3>
+			<p>service=WFS&request=GetCapabilities/p>
 		<h3>4. Retrieve a map image from a Web Map Service</h3>
-		<p></p>
+		<p>service=WMS&request=GetMap</p>
 		<h3>5. Retrieve data from an available coverage from a Web Coverage Service</h3>
+		<p>service=WCS&request=GetCoverage</p>
 	
 		<h2>Question 3 Use the cs2cs command line utility to convert the following latitude-longitude coordinates
 			(WGS84) to UTM, Zone 13N, NAD83 coordinates (5 pts each)</h2>
@@ -72,11 +74,11 @@
 			X = -62 East Longitude, Max Y = 54.5 North Latitude
 			• Layer to be mapped = “MOD_LSTD_CLIM_M”
 			Include in your answer both the complete WMS GetMap request and the resulting map image that is
-			returned. (15 pts)￿</h2>
+			returned. (15 pts)�</h2>
 		<p>http://neowms.sci.gsfc.nasa.gov/wms/wms?VERSION=1.1.1&REQUEST=GetMap&BBOX=-128.0,21.5,-62,54.5&LAYERS=MOD_LSTD_CLIM_M&FORMAT=image/jpeg&TRANSPARENT=FALSE&STYLES=&SRS=EPSG:4326&WIDTH=1200&HEIGHT=272</p>
 		<p><a href="images/midterm_5">Image</a></p>
 		<h2>Question 6 From the XML GetCapabilities returned by the following WFS request (Link) answer the
-			following questions (4 pts each)￿
+			following questions (4 pts each)�
 			http://services.nationalmap.gov/arcgis/services/WFS/transportation/MapServer/WFSServer?
 			request=GetCapabilities&service=WFS</h2>
 			<h3>1. What is the title for this service?</h3>
