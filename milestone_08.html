@@ -1,0 +1,133 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
+    <script type="text/javascript">        
+        // define global variables
+        var lon = -106;
+        var lat = 35;
+        var zoom = 7
+        var map;
+        var layer, countiesLayer, damsLayer, hucsLayer;
+        
+        // define map controls
+        var baseControls = [
+        	new OpenLayers.Control.Navigation({}),
+        	new OpenLayers.Control.PanZoomBar({}),
+			new OpenLayers.Control.LayerSwitcher({}),
+			new OpenLayers.Control.Permalink(),
+			new OpenLayers.Control.MousePosition({})
+        ];
+
+        // =============== Initialization function ========// =========== OSM Map ====================
+		
+		        function init(){
+            //map = new OpenLayers.Map( 'map' );
+            
+            map = new OpenLayers.Map('map', {
+			
+				maxExtent: new OpenLayers.Bounds(
+				-128 * 156543.0339,
+                -128 * 156543.0339,
+                128 * 156543.0339,
+                128 * 156543.0339),
+				maxResolution: 156543.0339,
+				units: 'm', 
+				 projection: new OpenLayers.Projection('EPSG:3857'),
+                displayProjection: new OpenLayers.Projection("EPSG:4326"),
+				controls: baseControls
+			});
+            
+			// =========== OSM Map ====================
+
+            layer = new OpenLayers.Layer.OSM( "Open Street Map");
+            map.addLayer(layer);
+            
+            // =========== USGS National Atlas WMS ====
+            // from USGS National Atlas: http://webservices.nationalatlas.gov/wms?SERVICE=WMS&REQUEST=GetCapabilities
+            countiesLayer = new OpenLayers.Layer.WMS( 
+            	"US Counties", 
+            	"http://webservices.nationalatlas.gov/wms/?",
+            	{layers: "counties", version: '1.3.0', transparent: 'TRUE'},
+            	{isBaseLayer: false}
+				
+            );
+		
+			map.addLayer(countiesLayer);
+			
+			 damsLayer = new OpenLayers.Layer.WMS( 
+            	"Dams", 
+            	"http://webservices.nationalatlas.gov/wms/water?",
+            	{layers: "dams", version: '1.3.0', transparent: 'TRUE'},
+            	{isBaseLayer: false, visibility: false}
+            );
+            map.addLayer(damsLayer);
+			
+			hucsLayer = new OpenLayers.Layer.WMS( 
+            	"Hydrologic Units", 
+            	"http://webservices.nationalatlas.gov/wms/water?",
+            	{layers: "hucs", version: '1.3.0', transparent: 'TRUE'},
+            	{isBaseLayer: false, visibility: false}
+            );
+            map.addLayer(hucsLayer);
+					
+
+			map.setCenter(
+                new OpenLayers.LonLat(lon, lat).transform(
+                    new OpenLayers.Projection("EPSG:4326"),
+                    map.getProjectionObject()
+                ), zoom
+            );
+
+            map.addControl(new OpenLayers.Control.LayerSwitcher() );
+            map.addControl(new OpenLayers.Control.OverviewMap() );
+        }
+        // =============== End of Initialization Function ============
+    </script>
+    <style type="text/css">
+        #map {width:80%; height:800px}
+    </style>
+	<style>
+body {
+background-color:  #faf2d6;
+margin: 0 15%
+font-family: sans-serif;
+}
+ 
+h1 {
+text-align:  center;
+font-family: serif;
+font-weight:  normal;
+text transform:  uppercase;
+border-bottom: 1px solid #57b1dc;
+margin-top: 30px;
+}
+
+h2 {
+color: #d1635B;
+font-size: 1em;
+}
+</style>
+  </head>
+  <body onload="init()">
+    <h1>Geog 485 Milestone 8 - Week 10</h1>
+	<p>Laura Gleasner</p>
+	<p>March 27, 2014</p>
+	<h2>Question 1: What area do you want to depict in your map? Why?</h2>
+	<p>The area of interest is the State of New Mexico.  I work with digital data for the state.  I would like to add layers that relate to water use.
+
+<h2>Question 2: What is the center point (latitude and longitude) of your area of interest?</h2>
+
+<p>The center point is 36.0, -106.0 which is roughly the center of the State of New Mexico.</p>
+
+<h2>Question 3: What base map(s) did you select for use in your map? Why?</h2>
+<p>Open Street Map was selected for this project.</p>
+
+<h2>Question 4: What is the scale of your map (local, regional, continental, global)? How will this translate into your selection of an appropriate default zoom level for your map?</h2>
+<p>The scale for this map is regional.  I wanted to show coverages for the entire state.  With the center latitude, I chose a zoom level of 7.</p>
+
+<h2>Question 5: Embed the OpenLayers Map in your writeup (included with the answers to questions 1-4 above) that is based upon your responses to questions 1-4 above. </h2>
+
+    <!-- Map DIV -->
+    <div id="map"></div>    
+  </body>
+</html>
