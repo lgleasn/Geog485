@@ -1,4 +1,4 @@
-V<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
     <script type="text/javascript">        
@@ -36,7 +36,7 @@ V<html xmlns="http://www.w3.org/1999/xhtml">
                 displayProjection: new OpenLayers.Projection("EPSG:4326"),
 				controls: baseControls
 			});
-
+			
 			    
 			// =========== OSM Map ====================
 
@@ -91,19 +91,18 @@ V<html xmlns="http://www.w3.org/1999/xhtml">
                 ), zoom
             );
 			
-			 Layers.usdrought14 = new OpenLayers.Layer.Vector("Drought 2014", {
+			 Layers.nmcogloc = new OpenLayers.Layer.Vector("KML - NM COG Locations", {
         projection: map.displayProjection,
-		visibility: false,
-		style: myusdrought14Style,
+		visibility: true,
         strategies: [new OpenLayers.Strategy.Fixed()],
         protocol: new OpenLayers.Protocol.HTTP({
-            url: "ftp://ftp://edacftp.unm.edu/outgoing/pub/lgleasn/usdrought14.kml",
+            url: "ftp://edacftp.unm.edu/outgoing/pub/lgleasn/nmcogloc.kml",
             format: new OpenLayers.Format.KML({
                 extractAttributes: true
             })
         })
     });
-    map.addLayer(usdrought14Layer);
+    map.addLayer(Layers.nmcogloc)
 		
 	
 
