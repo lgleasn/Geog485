@@ -1,0 +1,172 @@
+V<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
+    <script type="text/javascript">        
+        // define global variables
+        var lon = -106;
+        var lat = 35;
+        var zoom = 7
+        var map;
+        var Layers = new Object();
+        
+        // define map controls
+        var baseControls = [
+        	new OpenLayers.Control.Navigation({}),
+        	new OpenLayers.Control.PanZoomBar({}),
+			new OpenLayers.Control.LayerSwitcher({}),
+			new OpenLayers.Control.Permalink(),
+			new OpenLayers.Control.MousePosition({})
+        ];
+
+        // =============== Initialization function ========// =========== OSM Map ====================
+		
+		        function init(){
+            //map = new OpenLayers.Map( 'map' );
+            
+            map = new OpenLayers.Map('map', {
+			
+				maxExtent: new OpenLayers.Bounds(
+				-128 * 156543.0339,
+                -128 * 156543.0339,
+                128 * 156543.0339,
+                128 * 156543.0339),
+				maxResolution: 156543.0339,
+				units: 'm', 
+				 projection: new OpenLayers.Projection('EPSG:3857'),
+                displayProjection: new OpenLayers.Projection("EPSG:4326"),
+				controls: baseControls
+			});
+
+			    
+			// =========== OSM Map ====================
+
+            layer = new OpenLayers.Layer.OSM( "Open Street Map");
+            map.addLayer(layer);
+            
+            // =========== USGS National Atlas WMS ====
+            // from USGS National Atlas: http://webservices.nationalatlas.gov/wms?SERVICE=WMS&REQUEST=GetCapabilities
+            countiesLayer = new OpenLayers.Layer.WMS( 
+            	"US Counties", 
+            	"http://webservices.nationalatlas.gov/wms/?",
+            	{layers: "counties", version: '1.3.0', transparent: 'TRUE'},
+            	{isBaseLayer: false}
+				
+            );
+			
+			map.addLayer(countiesLayer);
+			
+			 damsLayer = new OpenLayers.Layer.WMS( 
+            	"Dams", 
+            	"http://webservices.nationalatlas.gov/wms/water?",
+            	{layers: "dams", version: '1.3.0', transparent: 'TRUE'},
+            	{isBaseLayer: false, visibility: false}
+            );
+			
+            map.addLayer(damsLayer);
+			
+			hucsLayer = new OpenLayers.Layer.WMS( 
+            	"Hydrologic Units", 
+            	"http://webservices.nationalatlas.gov/wms/water?",
+            	{layers: "hucs", version: '1.3.0', transparent: 'TRUE'},
+            	{isBaseLayer: false, visibility: false}
+            );
+            map.addLayer(hucsLayer);
+			
+			
+			// from RGIS:  http://gstore.unm.edu/apps/rgis/datasets/32517de4-5301-4e45-aa4d-580591165cca/services/ogc/wms?
+			
+			wellsLayer = new OpenLayers.Layer.WMS( 
+            	"OSE Water Wells", 
+            	"http://gstore.unm.edu/apps/rgis/datasets/32517de4-5301-4e45-aa4d-580591165cca/services/ogc/wms?",
+            	{layers: "ose_wells03shp", version: '1.1.1', transparent: 'TRUE'},
+            	{isBaseLayer: false, visibility: false}
+            );
+            map.addLayer(wellsLayer);
+			
+			
+			map.setCenter(
+                new OpenLayers.LonLat(lon, lat).transform(
+                    new OpenLayers.Projection("EPSG:4326"),
+                    map.getProjectionObject()
+                ), zoom
+            );
+			
+			 Layers.usdrought14 = new OpenLayers.Layer.Vector("Drought 2014", {
+        projection: map.displayProjection,
+		visibility: false,
+		style: myusdrought14Style,
+        strategies: [new OpenLayers.Strategy.Fixed()],
+        protocol: new OpenLayers.Protocol.HTTP({
+            url: "ftp://ftp://edacftp.unm.edu/outgoing/pub/lgleasn/usdrought14.kml",
+            format: new OpenLayers.Format.KML({
+                extractAttributes: true
+            })
+        })
+    });
+    map.addLayer(usdrought14Layer);
+		
+	
+
+		
+            map.addControl(new OpenLayers.Control.LayerSwitcher() );
+            map.addControl(new OpenLayers.Control.OverviewMap() );
+        }
+        // =============== End of Initialization Function ============
+    </script>
+
+
+
+	
+    <style type="text/css">
+        #map {width:80%; height:800px}
+    </style>
+	<style>
+body {
+background-color:  #faf2d6;
+margin: 0 15%
+font-family: sans-serif;
+}
+ 
+h1 {
+text-align:  center;
+font-family: serif;
+font-weight:  normal;
+text transform:  uppercase;
+border-bottom: 1px solid #57b1dc;
+margin-top: 30px;
+}
+
+h2 {
+color: #d1635B;
+font-size: 1em;
+}
+</style>
+  </head>
+  <body onload="init()">
+    <h1>Geog 485 Milestone 9 - Week 11</h1>
+	<p>Laura Gleasner</p>
+	<p>April 4, 2014</p>
+Please create a new OpenLayers mapping page that is based upon the initial map (and thematic focus) that you created for last week's milestone, and add the following to your map:
+
+1.Five Vector Features (based upon Point, LineString, or LinearRing Geometries), each assigned its own style.
+
+
+2.One KML Layer, also styled.
+
+
+3.One WMS Layer.
+
+
+Peer Review: This week's assignment will include a peer review component. Specifically, 1/3 of your 20-point peer-review score will be based upon your peer-review of two other web pages generated by the students in the class. The required peer-review will consist of two steps:
+
+1.Create a new Discussion Item in Learn entitled: "Page for Peer-Review <Your Name>" at the same time you link your milestone to your homepage. Include in the post the web address of your web page that you created for this assignment.
+
+
+2.Provide a substantive, constructive, and civil comment to two of the posted discussion items posted for peer-review. Please complete the peer-review as soon as possible so that your colleagues can benefit most from your input. Complete the peer-review no later than the required end-of-term portfolio review deadline. Think about the following ideas for your review: what did I learn from this page, what was done well, what could be improved
+
+
+
+    <!-- Map DIV -->
+    <div id="map"></div>    
+  </body>
+</html>
