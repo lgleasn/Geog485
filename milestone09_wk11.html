@@ -90,19 +90,7 @@
                     map.getProjectionObject()
                 ), zoom
             );
-			
-			 Layers.nmcogloc = new OpenLayers.Layer.Vector("KML - NM COG Locations", {
-        projection: map.displayProjection,
-		visibility: true,
-        strategies: [new OpenLayers.Strategy.Fixed()],
-        protocol: new OpenLayers.Protocol.HTTP({
-            url: "ftp://edacftp.unm.edu/outgoing/pub/lgleasn/nmcogloc.kml",
-            format: new OpenLayers.Format.KML({
-                extractAttributes: true
-            })
-        })
-    });
-    map.addLayer(Layers.nmcogloc)
+
 		
 	
 
